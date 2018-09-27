@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+.App {
+  font-family: sans-serif;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 12px;
+}
+label {
+  display: block;
+}
+
+ul {
+  padding: 0;
+}
+button {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  background: lightgrey;
+  border: none;
+}
+
+.profile img {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.follower {
+  display: flex;
+  align-items: center;
+}
+
+.follower img {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+  margin-bottom: 18px;
+}
