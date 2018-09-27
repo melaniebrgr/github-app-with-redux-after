@@ -2,53 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Login from "./Login.js";
 import Profile from "./Profile.js";
+import { handleChangeUsername, handleChangeFirstName, login, handleLogout, fetchFollowers } from "./actions";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loggedIn: false,
-      username: "",
-      firstName: "",
-      profile: {},
-      followers: []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogOut = this.handleLogOut.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleLogin() {
-    this.getGithubUser(this.state.username)
-      .then(res => res.json())
-      .then(data => this.setState({ profile: data, loggedIn: true }))
-      .catch(err => this.setState({ error: err }));
-  }
-
-  handleLogOut() {
-    this.setState({ loggedIn: false, profile: {} });
-  }
-
-  getGithubUser(username) {
-    return fetch(`https://api.github.com/users/${username}`);
-  }
-
-  getGithubFollowing(url) {
-    return fetch(url);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.loggedIn !== this.state.loggedIn) {
-      if (this.state.loggedIn) {
-        this.getGithubFollowing(this.state.profile.followers_url)
-          .then(res => res.json())
-          .then(data => this.setState({ followers: data }));
+  componentDidUpdate(prevProps) {
+    if (prevProps.loggedIn !== this.props.loggedIn) {
+      if (this.props.loggedIn) {
+        this.props.fetchFollowers(this.props.profile.followers_url);
       }
     }
   }
@@ -57,18 +17,19 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Github Developer</h1>
-        {this.state.loggedIn ? (
+        {this.props.loggedIn ? (
           <Profile
-            {...this.state.profile}
-            followers={this.state.followers}
-            handleLogOut={this.handleLogOut}
+            {...this.props.profile}
+            followers={this.props.followers}
+            handleLogOut={this.props.handleLogOut}
           />
         ) : (
           <Login
-            handleChange={this.handleChange}
-            handleLogin={this.handleLogin}
-            username={this.state.username}
-            firstName={this.state.firstName}
+            handleChangeUsername={this.props.handleChangeUsername}
+            handleChangeFirstName={this.props.handleChangeFirstName}
+            handleLogin={() => this.props.login(this.props.username)}
+            username={this.props.username}
+            firstName={this.props.firstName}
           />
         )}
       </div>
@@ -76,4 +37,19 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  handleChangeUsername,
+  handleChangeFirstName,
+  login,
+  handleLogout,
+  fetchFollowers,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
