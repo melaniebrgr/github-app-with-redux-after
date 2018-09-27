@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import Login from "./Login.js";
 import Profile from "./Profile.js";
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -75,5 +74,3 @@ class App extends Component {
     );
   }
 }
-
-export default connect()(App);
