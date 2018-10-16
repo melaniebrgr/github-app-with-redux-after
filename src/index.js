@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-import App from "./App.js";
+import App from "./modules/App.js";
 import "./styles.css";
 
 const rootElement = document.getElementById("root");

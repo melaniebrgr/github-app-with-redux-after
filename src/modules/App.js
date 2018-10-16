@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import Login from "./Login.js";
-import Profile from "./Profile.js";
+import Login from "./Login/Login.js";
+import Profile from "./Profile/Profile.js";
 
 const App = ({ loggedIn }) => (
   <div className="App">

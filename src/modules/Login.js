@@ -1,9 +1,9 @@
 import React from "react"
 import { connect } from "react-redux";
 
-import { login, changeUsername } from '../actions'
+import { login, changeUsername } from '../../actions'
 import TextField from "../TextField.js";
-import Button from "./Button.js";
+import Button from "../Button.js";
 
 const Login = ({ changeUsername, login, username }) => (
   <div className="login">

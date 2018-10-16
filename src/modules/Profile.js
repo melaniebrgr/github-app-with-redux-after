@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { logout, fetchFollowers } from "./actions";
-import FollowingList from "./FollowingList.js";
-import Button from "./Button.js";
+import { logout, fetchFollowers } from "../../actions";
+import FollowingList from "../FollowingList.js";
+import Button from "../Button.js";
 
 class Login extends Component {
   componentDidMount() {
