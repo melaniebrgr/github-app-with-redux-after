@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { logout, fetchFollowers } from "../../actions";
+import { logout, fetchFollowers } from "./Profile.actions";
 import FollowingList from "../FollowingList.js";
 import Button from "../Button.js";
 

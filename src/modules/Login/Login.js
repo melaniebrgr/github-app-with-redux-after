@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux";
 
-import { login, changeUsername } from '../../actions'
+import { login, changeUsername } from './Login.actions'
 import TextField from "../TextField.js";
 import Button from "../Button.js";
 
