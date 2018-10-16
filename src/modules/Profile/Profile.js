@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { logout, fetchEvents } from "./Profile.actions";
-import Button from "../Button.js";
+import Button from "../Button";
+import Forks from "../Forks"
+import PullRequests from "../PullRequests"
 
 class Login extends Component {
   componentDidMount() {
@@ -16,6 +18,8 @@ class Login extends Component {
         <h2>Hello {username}</h2>
         <img src={avatarUrl} alt={`${username}'s avatar'`} />
         <Button value="Log Out" handleClick={logout} />
+        <Forks />
+        <PullRequests />
       </div>
     );
   }

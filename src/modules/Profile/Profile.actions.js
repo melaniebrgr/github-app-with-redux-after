@@ -20,14 +20,14 @@ const getGithubUserEvents = username => fetch(`${GITHUB_API}/${username}/events?
 const transformPrs = pr => ({ 
   id: pr.id,
   name: pr.title,
-  url: pr.url,
+  url: pr.html_url,
   status: pr.state
 });
 
 const transformForks = fork => ({ 
   id: fork.id,
   name: fork.repo.name,
-  url: fork.repo.url
+  url: fork.payload.forkee.homepage,
 });
 
 export const fetchEvents = username => dispatch => {
