@@ -27,10 +27,8 @@ const saveFollowers = followers => ({
   payload: followers
 });
 
-const getGithubFollowing = url => fetch(url);
-
 export const fetchFollowers = followersUrl => dispatch => {
-  getGithubFollowing(followersUrl)
+  fetch(followersUrl)
     .then(res => res.json())
     .then(followers => dispatch(saveFollowers(followers)));
 }
