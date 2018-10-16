@@ -1,14 +1,11 @@
-export const handleChangeUsername = e => ({
+import secrets from './secrets';
+
+export const changeUsername = e => ({
   type: "CHANGE_USERNAME",
   payload: e.target.value,
 });
 
-export const handleChangeFirstName = e => ({
-  type: "CHANGE_FIRST_NAME",
-  payload: e.target.value,
-});
-
-const getGithubUser = username => fetch(`https://api.github.com/users/${username}`);
+const getGithubUser = username => fetch(`https://api.github.com/users/${username}?access_token=${secrets.GITHUB_TOKEN}`);
 
 const handleLogin = profile => ({
   type: 'LOGIN',
@@ -21,7 +18,7 @@ export const login = username => dispatch => {
     .then(profile => dispatch(handleLogin(profile)))
 }
 
-export const handleLogout = () => ({
+export const logout = () => ({
   type: 'LOGOUT'
 });
 

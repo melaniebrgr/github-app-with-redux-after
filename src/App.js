@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Login from "./Login.js";
 import Profile from "./Profile.js";
-import { handleChangeUsername, handleChangeFirstName, login, handleLogout, fetchFollowers } from "./actions";
+import { changeUsername, login, logout, fetchFollowers } from "./actions";
 
 class App extends Component {
   componentDidUpdate(prevProps) {
@@ -21,15 +21,13 @@ class App extends Component {
           <Profile
             {...this.props.profile}
             followers={this.props.followers}
-            handleLogOut={this.props.handleLogOut}
+            handleLogOut={this.props.logout}
           />
         ) : (
           <Login
-            handleChangeUsername={this.props.handleChangeUsername}
-            handleChangeFirstName={this.props.handleChangeFirstName}
+            handleChangeUsername={this.props.changeUsername}
             handleLogin={() => this.props.login(this.props.username)}
             username={this.props.username}
-            firstName={this.props.firstName}
           />
         )}
       </div>
@@ -42,10 +40,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  handleChangeUsername,
-  handleChangeFirstName,
+  changeUsername,
   login,
-  handleLogout,
+  logout,
   fetchFollowers,
 };
 
