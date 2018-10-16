@@ -1,4 +1,5 @@
 import secrets from '../../secrets';
+import { GITHUB_API } from '../../constants';
 
 export const changeUsername = e => ({
   type: "CHANGE_USERNAME",
@@ -10,7 +11,7 @@ const handleLogin = profile => ({
   payload: profile
 })
 
-const getGithubUser = username => fetch(`https://api.github.com/users/${username}?access_token=${secrets.GITHUB_TOKEN}`);
+const getGithubUser = username => fetch(`${GITHUB_API}/${username}?access_token=${secrets.GITHUB_TOKEN}`);
 
 export const login = username => dispatch => {
   getGithubUser(username)

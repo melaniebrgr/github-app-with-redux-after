@@ -5,7 +5,9 @@ const initialState = {
   loggedIn: false,
   username: "",
   profile: {},
-  followers: []
+  followers: [],
+  forks: [],
+  pullRequests: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,10 +27,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...initialState,
       }
-    case "FETCH_FOLLOWERS":
+    case "FETCH_FORKS":
       return {
         ...state,
-        followers: action.payload
+        forks: action.payload,
+      }
+    case "FETCH_PULL_REQUESTS":
+      return {
+        ...state,
+        pullRequests: action.payload,
       }
     default:
       return state;

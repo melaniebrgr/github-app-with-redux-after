@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { logout, fetchFollowers } from "./Profile.actions";
-import FollowingList from "../FollowingList.js";
+import { logout, fetchEvents } from "./Profile.actions";
 import Button from "../Button.js";
 
 class Login extends Component {
   componentDidMount() {
-    this.props.fetchFollowers(this.props.followersUrl);
+    this.props.fetchEvents(this.props.username)
   }
 
   render() {
@@ -17,7 +16,6 @@ class Login extends Component {
         <h2>Hello {username}</h2>
         <img src={avatarUrl} alt={`${username}'s avatar'`} />
         <Button value="Log Out" handleClick={logout} />
-        <FollowingList followers={followers} />
       </div>
     );
   }
@@ -32,7 +30,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   logout,
-  fetchFollowers
+  fetchEvents
 };
 
 export default connect(
